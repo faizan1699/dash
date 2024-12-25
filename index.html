@@ -51,16 +51,6 @@
             });
         }
 
-        // Attempt to autoplay on page load
-        window.addEventListener("load", () => {
-            audio.muted = true; // Start muted for autoplay
-            audio.play().then(() => {
-                audio.muted = false; // Unmute if autoplay works
-            }).catch(() => {
-                console.log("Autoplay blocked. Waiting for user interaction.");
-            });
-        });
-
         // Play audio on any key press
         document.addEventListener("keydown", () => {
             playAudio();
