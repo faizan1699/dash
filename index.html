@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Press Sound</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            color: #fff;
+        }
+
+        .instruction {
+            text-align: center;
+        }
+
+        .instruction p {
+            font-size: 1.5rem;
+        }
+
+        img {
+            width: 50%;
+            margin: auto;
+            margin-top: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="instruction">
+        <img src="img.png" alt="">
+    </div>
+
+    <audio id="keySound" src="audio.m4a"></audio>
+
+    <script>
+        const audio = document.getElementById("keySound");
+
+        // Function to play audio
+        function playAudio() {
+            audio.currentTime = 0; // Reset to start to avoid overlapping
+            audio.play().catch(() => {
+                console.log("Audio playback blocked by browser policy.");
+            });
+        }
+
+        // Attempt to autoplay on page load
+        window.addEventListener("load", () => {
+            audio.muted = true; // Start muted for autoplay
+            audio.play().then(() => {
+                audio.muted = false; // Unmute if autoplay works
+            }).catch(() => {
+                console.log("Autoplay blocked. Waiting for user interaction.");
+            });
+        });
+
+        // Play audio on any key press
+        document.addEventListener("keydown", () => {
+            playAudio();
+        });
+
+        // Optional: Play on click anywhere in the body
+        document.body.addEventListener("click", () => {
+            playAudio();
+        });
+    </script>
+</body>
+
+</html>
