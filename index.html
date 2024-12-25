@@ -43,20 +43,17 @@
     <script>
         const audio = document.getElementById("keySound");
 
-        // Function to play audio
         function playAudio() {
-            audio.currentTime = 0; // Reset to start to avoid overlapping
+            audio.currentTime = 0;
             audio.play().catch(() => {
                 console.log("Audio playback blocked by browser policy.");
             });
         }
 
-        // Play audio on any key press
         document.addEventListener("keydown", () => {
             playAudio();
         });
 
-        // Optional: Play on click anywhere in the body
         document.body.addEventListener("click", () => {
             playAudio();
         });
